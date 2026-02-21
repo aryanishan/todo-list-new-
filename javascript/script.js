@@ -1,9 +1,13 @@
 const todoList = [{
   name: 'make dinner',
-  dueDate: '2022-12-22'
+  dueDate: '2022-12-22',
+  startTime: '20:00',
+  endTime: '21:00'
 },{
   name: 'wash dishes',
-  dueDate: '2022-12-22'
+  dueDate: '2022-12-22',
+  startTime: '20:00',
+  endTime: '21:00'
 }];
 
 renderTodoList();
@@ -15,8 +19,9 @@ function renderTodoList() {
     const todoObject = todoList[i];
     // const name = todoObject.name;
     // const dueDate = todoObject.dueDate;
-    const {name, dueDate} = todoObject;
-    const html = `<p>${name} ${dueDate}
+    const {name, dueDate, startTime, endTime} = todoObject;
+    const html = `<input type="checkbox">
+    <p>${name} ${dueDate} ${startTime} ${endTime}
      <button onclick="
      todoList.splice(${i}, 1);
      renderTodoList();
@@ -35,11 +40,17 @@ function addTodo() {
   const name = inputElement.value;
   const dateInputElement = document.querySelector('.js-due-date-input');
   const dueDate = dateInputElement.value;
+  const timeInputElement = document.querySelector('.js-start-time-input');
+  const startTime = timeInputElement.value;
+  const endTimeElement = document.querySelector('.js-end-time-input');
+  const endTime = endTimeElement.value;
 
 
   todoList.push({
     name,
-    dueDate
+    dueDate,
+    startTime,
+    endTime
   });
 
   console.log(todoList);
