@@ -20,12 +20,11 @@ function renderTodoList() {
     // const name = todoObject.name;
     // const dueDate = todoObject.dueDate;
     const {name, dueDate, startTime, endTime} = todoObject;
-    const html = `<input type="checkbox">
-    <p>${name} ${dueDate} ${startTime} ${endTime}
+    const html = `<p class="todo-item">${name} ${dueDate} ${startTime} ${endTime}
      <button onclick="
      todoList.splice(${i}, 1);
      renderTodoList();
-     ">Delete</button>
+     " class="delete-button">Delete</button>
      </p>`;
     todoListHTML += html;
   }
