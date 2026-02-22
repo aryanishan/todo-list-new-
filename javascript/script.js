@@ -3,7 +3,7 @@ const todoList = [{
   dueDate: '2022-12-22',
   startTime: '20:00',
   endTime: '21:00'
-},{
+}, {
   name: 'wash dishes',
   dueDate: '2022-12-22',
   startTime: '20:00',
@@ -19,12 +19,9 @@ function renderTodoList() {
     const todoObject = todoList[i];
     // const name = todoObject.name;
     // const dueDate = todoObject.dueDate;
-    const {name, dueDate, startTime, endTime} = todoObject;
+    const { name, dueDate, startTime, endTime } = todoObject;
     const html = `<p class="todo-item">${name} ${dueDate} ${startTime} ${endTime}
-     <button onclick="
-     todoList.splice(${i}, 1);
-     renderTodoList();
-     " class="delete-button">Delete</button>
+     <button class="delete-button js-delete-btn" data-index="${i}">Delete</button>
      </p>`;
     todoListHTML += html;
   }
@@ -58,3 +55,12 @@ function addTodo() {
 
   renderTodoList();
 }
+
+document.querySelector('.js-add-btn').addEventListener('click', addTodo);
+document.querySelector('.js-todo-list').addEventListener('click', (event) => {
+  if (!event.target.classList.contains('js-delete-btn')) return;
+
+  const index = Number(event.target.dataset.index);
+  todoList.splice(index, 1);
+  renderTodoList();
+});
